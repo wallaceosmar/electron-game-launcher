@@ -18,16 +18,13 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 7.27.1
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-          cache: 'pnpm'
-      # - run: npm ci
-      #   env:
-      #     PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
+          cache: 'npm'
+      - run: npm ci
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
       - run: npm run test:main --if-present
       - run: npm run test:preload --if-present
       - run: npm run test:renderer --if-present
