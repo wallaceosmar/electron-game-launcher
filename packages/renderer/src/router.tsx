@@ -6,7 +6,7 @@ import {
   useRouteError,
 } from 'react-router-dom';
 import Root from './root';
-import { lazy } from 'react';
+import { Suspense, lazy } from 'react';
 
 function ErrorBoundary() {
   let error = useRouteError();
@@ -31,8 +31,8 @@ const Router: React.FC = () => {
   return <RouterProvider router={createHashRouter(
     createRoutesFromElements(
       <Route path="/" element={<Root />} errorElement={<ErrorBoundary />}>
-        <Route path="/recent" element={<RecentPage />} />
-        <Route path="/owned-games" element={<OwnedGames />} />
+        <Route path="/recent" element={<Suspense fallback={<>Loading!</>}><RecentPage /></Suspense>} />
+        <Route path="/owned-games" element={<Suspense fallback={<>Loading!</>}><OwnedGames /></Suspense>} />
       </Route>
     )
   )} />;
