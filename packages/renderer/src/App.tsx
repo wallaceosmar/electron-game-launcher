@@ -1,4 +1,9 @@
+import Router from './router';
 const App = () => {
-  return <p>hello from react</p>;
+  return (
+    <>
+      <Router />
+    </>
+  );
 };
 export default App;
